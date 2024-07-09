@@ -349,17 +349,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 870994180321948755, guid: a59f7a0f9e9cba64fa9f284e89e234a8, type: 3}
-      propertyPath: m_Constraints
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 1286181619415219497, guid: a59f7a0f9e9cba64fa9f284e89e234a8, type: 3}
       propertyPath: m_Name
       value: player
       objectReference: {fileID: 0}
-    - target: {fileID: 2258102655241084882, guid: a59f7a0f9e9cba64fa9f284e89e234a8, type: 3}
-      propertyPath: globalSpeed
-      value: 9
+    - target: {fileID: 1286181619415219497, guid: a59f7a0f9e9cba64fa9f284e89e234a8, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7666453327562892181, guid: a59f7a0f9e9cba64fa9f284e89e234a8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -367,7 +363,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7666453327562892181, guid: a59f7a0f9e9cba64fa9f284e89e234a8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.361
       objectReference: {fileID: 0}
     - target: {fileID: 7666453327562892181, guid: a59f7a0f9e9cba64fa9f284e89e234a8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -590,21 +586,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7400026130883184530, guid: de75a769edd06004884682359384bafa, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 6200000, guid: 03348c7d804c18e49946d81118e4ebb1, type: 2}
-    - target: {fileID: 7400026130883184530, guid: de75a769edd06004884682359384bafa, type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7400026130883184530, guid: de75a769edd06004884682359384bafa, type: 3}
-      propertyPath: m_Interpolate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7400026130883184530, guid: de75a769edd06004884682359384bafa, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 0
+    - target: {fileID: 8957335395137788748, guid: de75a769edd06004884682359384bafa, type: 3}
+      propertyPath: scaleY
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
