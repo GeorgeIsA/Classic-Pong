@@ -99,7 +99,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0808574458316b48816a40b95a52a40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  globalSpeed: 5
   player1: 1
   player2: 0
 --- !u!50 &870994180321948755
@@ -114,7 +113,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
-  m_Mass: 10
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0

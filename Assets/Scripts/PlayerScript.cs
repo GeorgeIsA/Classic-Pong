@@ -1,16 +1,16 @@
 using UnityEngine;
 public class PlayerScript : MonoBehaviour
 {
-    public static float globalSpeed = 8;
+    public static float globalSpeed = 10;
     public bool player1;
     public bool player2;
     Rigidbody2D rb2d;
-    void Awake()
+    private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         if (player1)
             player1Movement();

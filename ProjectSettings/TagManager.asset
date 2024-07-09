@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - edge
+  - score
+  - Ball
   layers:
   - Default
   - TransparentFX
