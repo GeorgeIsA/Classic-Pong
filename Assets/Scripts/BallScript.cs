@@ -4,7 +4,6 @@ public class BallScript : MonoBehaviour
 {
     Rigidbody2D rb2d;
     float playerSpeed;
-    public float scaleY = 10;
 
     void Awake()
     {
@@ -23,26 +22,36 @@ public class BallScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        float playerY = GetY(other);
+        float playerY = other.gameObject.transform.position.y;
         float ballY = gameObject.transform.position.y;
         if (other.collider.CompareTag("Player"))
         {
             if (rb2d.velocity.x > 0)
-                rb2d.velocity = new Vector2(1, (ballY - playerY) * scaleY * 0.1f) * playerSpeed;
+                rb2d.velocity = new Vector2(1, checkPlayerY(playerY, ballY)) * playerSpeed;
             else if (rb2d.velocity.x < 0)
-                rb2d.velocity = new Vector2(-1, (ballY - playerY) * scaleY * 0.1f) * playerSpeed;
+                rb2d.velocity = new Vector2(-1, checkPlayerY(playerY, ballY)) * playerSpeed;
         }
         else if (other.collider.CompareTag("edge"))
         {
             if (rb2d.velocity.x > 0)
-                rb2d.velocity = new Vector2(1, 0) * playerSpeed;
+                rb2d.velocity = new Vector2(1, checkY()) * playerSpeed;
             else if (rb2d.velocity.x < 0)
-                rb2d.velocity = new Vector2(-1, 0) * playerSpeed;
+                rb2d.velocity = new Vector2(-1, checkY()) * playerSpeed;
         }
     }
 
-    private float GetY(Collision2D other)
+    private float checkY()
     {
-        return other.gameObject.transform.position.y;
+        if (rb2d.velocity.y > 0)
+            return 1;
+        else
+            return -1;
+    }
+    private float checkPlayerY(float playerY, float ballY)
+    {
+        if(playerY - ballY > 0)
+            return playerY - ballY;
+        else
+            return ballY - playerY;
     }
 }
