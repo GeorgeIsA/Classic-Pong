@@ -1,7 +1,7 @@
 using UnityEngine;
 public class PlayerScript : MonoBehaviour
 {
-    public int speed = 10;
+    public int globalSpeed = 10;
     Rigidbody2D rb2d;
     void Awake()
     {
@@ -10,12 +10,12 @@ public class PlayerScript : MonoBehaviour
 
     void FixedUpdate()
     {
+        // Move the player up or down
         if (Input.GetKey(KeyCode.W))
-            rb2d.velocity = Vector2.up * speed;
+            rb2d.velocity = Vector2.up * globalSpeed;
         else if (Input.GetKey(KeyCode.S))
-            rb2d.velocity = Vector2.down * speed;
+            rb2d.velocity = Vector2.down * globalSpeed;
         else
             rb2d.velocity = new Vector2(0, 0);
-   
     }
 }
