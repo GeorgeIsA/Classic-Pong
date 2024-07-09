@@ -27,9 +27,9 @@ public class BallScript : MonoBehaviour
         if (other.collider.CompareTag("Player"))
         {
             if (rb2d.velocity.x > 0)
-                rb2d.velocity = new Vector2(1, checkPlayerY(playerY, ballY)) * playerSpeed;
+                rb2d.velocity = new Vector2(1, ballY-playerY) * playerSpeed;
             else if (rb2d.velocity.x < 0)
-                rb2d.velocity = new Vector2(-1, checkPlayerY(playerY, ballY)) * playerSpeed;
+                rb2d.velocity = new Vector2(-1, ballY-playerY) * playerSpeed;
         }
         else if (other.collider.CompareTag("edge"))
         {
@@ -46,12 +46,5 @@ public class BallScript : MonoBehaviour
             return 1;
         else
             return -1;
-    }
-    private float checkPlayerY(float playerY, float ballY)
-    {
-        if(playerY - ballY > 0)
-            return playerY - ballY;
-        else
-            return ballY - playerY;
     }
 }
