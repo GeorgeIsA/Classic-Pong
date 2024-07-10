@@ -433,7 +433,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 12, z: 1}
+  m_LocalScale: {x: 0.5, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1333,7 +1333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3011adc31884d3b43b6d9097eee1085a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player2ScoreText: {fileID: 1516554729}
+  player1ScoreText: {fileID: 1226589654}
 --- !u!212 &8367591834535795868
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1540,7 +1540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d5a6d85f34387549bfdac700487a826, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1ScoreText: {fileID: 1226589654}
+  player2ScoreText: {fileID: 1516554729}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
