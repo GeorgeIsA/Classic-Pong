@@ -17,9 +17,6 @@ public class GameHandler : MonoBehaviour
     {
         Restart();
     }
-
-
-
     public void Restart()
     {
         int firstDirection = Random.Range(0, 2);

@@ -252,6 +252,7 @@ GameObject:
   - component: {fileID: 775957725}
   - component: {fileID: 775957724}
   - component: {fileID: 775957723}
+  - component: {fileID: 775957726}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -356,7 +357,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Type: 2
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -373,6 +374,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 775957719}
   m_CullTransparentMesh: 1
+--- !u!114 &775957726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775957719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e015f1addd478d45bc9112c1b3f0466, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &848913862
 GameObject:
   m_ObjectHideFlags: 0
@@ -782,6 +795,7 @@ GameObject:
   - component: {fileID: 1750823971}
   - component: {fileID: 1750823970}
   - component: {fileID: 1750823969}
+  - component: {fileID: 1750823972}
   m_Layer: 5
   m_Name: OptionsButton
   m_TagString: Untagged
@@ -806,7 +820,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -97.2}
+  m_AnchoredPosition: {x: 0, y: -100}
   m_SizeDelta: {x: 580, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1750823969
@@ -886,7 +900,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Type: 2
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -903,6 +917,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1750823967}
   m_CullTransparentMesh: 1
+--- !u!114 &1750823972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750823967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e015f1addd478d45bc9112c1b3f0466, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &1192165995285540659
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1007,7 +1033,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Type: 2
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1062,6 +1088,7 @@ GameObject:
   - component: {fileID: 1192165995285540659}
   - component: {fileID: 3882682428458915132}
   - component: {fileID: 3292520271223893324}
+  - component: {fileID: 6178228268335984597}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -1086,9 +1113,21 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -196}
+  m_AnchoredPosition: {x: 0, y: -200}
   m_SizeDelta: {x: 580, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6178228268335984597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4597932035684178320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e015f1addd478d45bc9112c1b3f0466, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6253402161287919473
 GameObject:
   m_ObjectHideFlags: 0

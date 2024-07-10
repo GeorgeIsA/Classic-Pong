@@ -34,7 +34,6 @@ public class SceneManagerScript : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(inGame);
         if (SceneManager.GetActiveScene().name == "GameScene")
             BackOneScene();
         if (SceneManager.GetActiveScene().name == "OptionsScene" && !inGame)
