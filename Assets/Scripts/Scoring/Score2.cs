@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-public class score2 : MonoBehaviour
+public class Score2 : MonoBehaviour
 {
     public Text player1ScoreText;
     private void OnTriggerEnter2D(Collider2D other)
