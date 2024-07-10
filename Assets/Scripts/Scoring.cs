@@ -22,8 +22,6 @@ public class Scoring : MonoBehaviour
     {
         if (scored)
         {
-            Debug.Log(player1Score);
-            Debug.Log(player2Score);
             ball.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
             StartCoroutine(DelayRestart());
             scored = false;
