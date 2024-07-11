@@ -1,17 +1,26 @@
 using UnityEngine;
-
 public class GameHandler : MonoBehaviour
 {
     public static GameObject ball;
     public static GameObject player1;
     public static GameObject player2;
+    public bool firstInstance = false;
     [SerializeField] public bool onRandom;
 
     float playerSpeed;
 
     Rigidbody2D ballrb;
+    private void OnEnable()
+    {
+        Time.timeScale = 1;
+    }
+    private void OnDisable()
+    {
+        Time.timeScale = 0;
+    }
     private void Awake()
     {
+
         ball = GameObject.Find("Ball");
         player1 = GameObject.Find("Player1");
         player2 = GameObject.Find("Player2");

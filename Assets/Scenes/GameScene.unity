@@ -820,7 +820,7 @@ GameObject:
   - component: {fileID: 1618606068}
   m_Layer: 0
   m_Name: GameHandler
-  m_TagString: Untagged
+  m_TagString: GameHandler
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -837,6 +837,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4115654a4de2aa545aa4a03fda51cfbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstInstance: 0
   onRandom: 1
 --- !u!4 &1618606069
 Transform:
@@ -970,6 +971,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15d8eaaae1a0eaa428aaa9b253e733f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameHandler1: {fileID: 0}
+  gameHandler2: {fileID: 0}
 --- !u!1001 &496584375003112834
 PrefabInstance:
   m_ObjectHideFlags: 0
