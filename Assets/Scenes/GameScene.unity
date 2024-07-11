@@ -297,9 +297,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 870994180321948755, guid: a59f7a0f9e9cba64fa9f284e89e234a8, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: b71f837acfdce6348a8578cfdbb66f5b, type: 2}
     - target: {fileID: 1286181619415219497, guid: a59f7a0f9e9cba64fa9f284e89e234a8, type: 3}
       propertyPath: m_Name
-      value: player2
+      value: Player2
       objectReference: {fileID: 0}
     - target: {fileID: 2258102655241084882, guid: a59f7a0f9e9cba64fa9f284e89e234a8, type: 3}
       propertyPath: player1
@@ -411,7 +415,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -815,7 +819,7 @@ GameObject:
   - component: {fileID: 1618606069}
   - component: {fileID: 1618606068}
   m_Layer: 0
-  m_Name: gameHandler
+  m_Name: GameHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -833,7 +837,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4115654a4de2aa545aa4a03fda51cfbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ball: {fileID: 751085103670526614}
   onRandom: 1
 --- !u!4 &1618606069
 Transform:
@@ -975,9 +978,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 870994180321948755, guid: a59f7a0f9e9cba64fa9f284e89e234a8, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: b71f837acfdce6348a8578cfdbb66f5b, type: 2}
     - target: {fileID: 1286181619415219497, guid: a59f7a0f9e9cba64fa9f284e89e234a8, type: 3}
       propertyPath: m_Name
-      value: player1
+      value: Player1
       objectReference: {fileID: 0}
     - target: {fileID: 7666453327562892181, guid: a59f7a0f9e9cba64fa9f284e89e234a8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1213,7 +1220,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4285158420578910583, guid: de75a769edd06004884682359384bafa, type: 3}
       propertyPath: m_Name
-      value: ball
+      value: Ball
+      objectReference: {fileID: 0}
+    - target: {fileID: 5332422886816258194, guid: de75a769edd06004884682359384bafa, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1281,7 +1292,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 2228414744422815738}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: b71f837acfdce6348a8578cfdbb66f5b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1357,9 +1368,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.6886792, g: 0.13968495, b: 0.13968495, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1488,7 +1499,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 2228414745288423767}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: b71f837acfdce6348a8578cfdbb66f5b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1564,9 +1575,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0.36380243, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

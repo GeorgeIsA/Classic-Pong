@@ -14,22 +14,25 @@ public class BallScript : MonoBehaviour
         float playerY = other.gameObject.transform.position.y;
         float ballY = gameObject.transform.position.y;
         if (other.collider.CompareTag("Player"))
-        {
-            if (rb2d.velocity.x > 0)
-                rb2d.velocity = new Vector2(1, ballY-playerY) * PlayerScript.globalSpeed;
-            else if (rb2d.velocity.x < 0)
-                rb2d.velocity = new Vector2(-1, ballY-playerY) * PlayerScript.globalSpeed;
-        }
+                rb2d.velocity = new Vector2(checkX(rb2d), checkSide(ballY, playerY)) * PlayerScript.globalSpeed;
         else if (other.collider.CompareTag("edge"))
-        {
-            if (rb2d.velocity.x > 0)
-                rb2d.velocity = new Vector2(1, checkY()) * PlayerScript.globalSpeed;
-            else if (rb2d.velocity.x < 0)
-                rb2d.velocity = new Vector2(-1, checkY()) * PlayerScript.globalSpeed;
-        }
+                rb2d.velocity = new Vector2(checkX(rb2d), checkY(rb2d)) * PlayerScript.globalSpeed;
     }
 
-    private float checkY()
+    private float checkSide(float ballY, float playerY)
+    {
+        return ballY - playerY;
+    }
+
+    private int checkX(Rigidbody2D rb2d)
+    {
+        if (rb2d.velocity.x > 0)
+            return 1;
+        else
+            return -1;
+    }
+
+    private int checkY(Rigidbody2D rb2d)
     {
         if (rb2d.velocity.y > 0)
             return 1;
@@ -37,3 +40,4 @@ public class BallScript : MonoBehaviour
             return -1;
     }
 }
+

@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class GameHandler : MonoBehaviour
 {
-    public GameObject ball;
+    public static GameObject ball;
+    public static GameObject player1;
+    public static GameObject player2;
     [SerializeField] public bool onRandom;
 
     float playerSpeed;
@@ -10,6 +12,9 @@ public class GameHandler : MonoBehaviour
     Rigidbody2D ballrb;
     private void Awake()
     {
+        ball = GameObject.Find("Ball");
+        player1 = GameObject.Find("Player1");
+        player2 = GameObject.Find("Player2");
         ballrb = ball.GetComponent<Rigidbody2D>();
         playerSpeed = PlayerScript.globalSpeed;
     }

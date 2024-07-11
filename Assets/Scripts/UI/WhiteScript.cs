@@ -15,7 +15,6 @@ public class WhiteScript : MonoBehaviour
     {
         if (currentButton.IsHighlighted())
             associatedText.color = Color.white;
-
         else         
             associatedText.color = Color.black;
         
