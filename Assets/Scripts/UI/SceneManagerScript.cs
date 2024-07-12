@@ -1,7 +1,7 @@
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections;
 public class SceneManagerScript : MonoBehaviour
 {
     private static bool inGame;
@@ -12,10 +12,13 @@ public class SceneManagerScript : MonoBehaviour
     public static bool doneInstance = false;
     public static bool is1;
     public static bool is2;
+    public static GameObject player1;
+    public static GameObject player2;
+    public static bool inOptions = false;
 
     private void Start()
     {
-        if (SceneManager.GetActiveScene().name == "GameScene")
+        if (SceneManager.GetActiveScene().name == "GameScene" && !inOptions)
         {
             gameHandlerObjectInstance = GameObject.FindGameObjectsWithTag("GameHandler");
             InitializeGameHandlers();
@@ -41,8 +44,6 @@ public class SceneManagerScript : MonoBehaviour
         gameHandler1 = gameHandlerObjectInstance[0].GetComponent<GameHandler>();
         if (gameHandlerObjectInstance.Length == 1 && gameHandlerObjectInstance[0] != null)
         {
-            Debug.Log("Found the initial game handler.");
-            
             if (!gameHandler1.firstInstance && !doneInstance)
             {
                 gameHandler1.firstInstance = true;
@@ -50,7 +51,6 @@ public class SceneManagerScript : MonoBehaviour
                 is1 = true;
                 is2 = false;
                 DontDestroyOnLoad(gameHandlerObjectInstance[0]);
-                Debug.Log("Done Instance");
             }
         }
         else if (gameHandlerObjectInstance.Length == 2 && gameHandlerObjectInstance[1] != null)
@@ -84,14 +84,9 @@ public class SceneManagerScript : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        UISystem();
-    }
-
     private static void SetPaddle()
     {
-        if (SceneManager.GetActiveScene().name == "OptionsScene")
+        if (inOptions)
         {
             paddleSlider = GameObject.Find("PaddleSizeSlider").GetComponent<Slider>();
             paddleSlider.value = PlayerPrefs.GetFloat("PaddleSize", 2.5f);
@@ -105,10 +100,10 @@ public class SceneManagerScript : MonoBehaviour
 
     private static void ApplyPaddleSize()
     {
-        if (SceneManager.GetActiveScene().name == "GameScene")
+        if (SceneManager.GetActiveScene().name == "GameScene" && !inOptions)
         {
-            GameObject player1 = GameObject.Find("Player1");
-            GameObject player2 = GameObject.Find("Player2");
+            player1 = GameObject.Find("Player1");
+            player2 = GameObject.Find("Player2");
             player1.transform.localScale = new Vector3(0.5f, PlayerPrefs.GetFloat("PaddleSize", 2.5f), 1);
             player2.transform.localScale = new Vector3(0.5f, PlayerPrefs.GetFloat("PaddleSize", 2.5f), 1);
         }
@@ -136,59 +131,68 @@ public class SceneManagerScript : MonoBehaviour
         inGame = false;
     }
 
-    private static void BackOneScene()
+    private IEnumerator BackOneScene()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (is1)
-            {
-                gameHandlerObjectInstance[0].GetComponent<GameHandler>().enabled = false;
-                Debug.Log("handler1 was disabled" + gameHandlerObjectInstance[0].GetComponent<GameHandler>());
-            }
-            else if (is2)
-            {
-                gameHandlerObjectInstance[1].GetComponent<GameHandler>().enabled = false;
-                Debug.Log("handler2 was disabled"+gameHandlerObjectInstance[1].GetComponent<GameHandler>());
-            }
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-        }
-    }
-
-    private static void PushOneScene()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            if (is1)
-            {
-                gameHandlerObjectInstance[0].GetComponent<GameHandler>().enabled = true;
-                Debug.Log("handler1 was enabled" + gameHandlerObjectInstance[0].GetComponent<GameHandler>());
-            }
-            else if (is2)
-            {
-                gameHandlerObjectInstance[1].GetComponent<GameHandler>().enabled = true;
-                Debug.Log("handler2 was enabled" + gameHandlerObjectInstance[1].GetComponent<GameHandler>());
-            }
-        }
-    }
-
-    private static void UISystem()
-    {
-        if (SceneManager.GetActiveScene().name == "GameScene")
-        {
-            BackOneScene();
-        }
-
-        if (SceneManager.GetActiveScene().name == "OptionsScene" && !inGame)
-        {
-            BackOneScene();
-        }
-
-        if (SceneManager.GetActiveScene().name == "OptionsScene" && inGame)
-        {   
-            PushOneScene();
             
+            //Debug.Log("Here the game handler should be disabled");
+            ToggleGameHandler(false);
+            Time.timeScale = 0;
+            yield return SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex - 1, LoadSceneMode.Additive);
+            inOptions = true;
+        }
+    }
+
+    private IEnumerator PushOneScene()
+    {
+        //Debug.Log("waiting for escape");
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+
+            //Debug.Log("Esc pressed");
+            
+            yield return SceneManager.UnloadSceneAsync("OptionsScene");
+            inOptions = false;
+            Time.timeScale = 1;
+            ToggleGameHandler(true);
+        }
+    }   
+
+    private void UISystem()
+    {
+        if (SceneManager.GetActiveScene().name == "GameScene" && !inOptions)
+        {
+            StartCoroutine(BackOneScene());
+        }
+    }
+
+    private void Update()
+    {
+        //Debug.Log("inOptions: " + inOptions + " inGame: " + inGame);
+        //Debug.Log("inOptions: " + inOptions);
+        UISystem();
+    }
+
+    private void LateUpdate()
+    {
+        if (inOptions && inGame)
+        {
+            
+            //Debug.Log("Ready");
+            StartCoroutine(PushOneScene());
+        }
+    }
+
+    private static void ToggleGameHandler(bool state)
+    {
+        foreach (var handler in gameHandlerObjectInstance)
+        {
+            if (handler != null)
+            {
+                //Debug.Log("This is where it gets killed");
+                handler.SetActive(state);
+            }
         }
     }
 }
-

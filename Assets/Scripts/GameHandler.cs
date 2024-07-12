@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 public class GameHandler : MonoBehaviour
 {
     public static GameObject ball;
@@ -10,23 +11,18 @@ public class GameHandler : MonoBehaviour
     float playerSpeed;
 
     Rigidbody2D ballrb;
-    private void OnEnable()
-    {
-        Time.timeScale = 1;
-    }
-    private void OnDisable()
-    {
-        Time.timeScale = 0;
-    }
     private void Awake()
     {
-
-        ball = GameObject.Find("Ball");
-        player1 = GameObject.Find("Player1");
-        player2 = GameObject.Find("Player2");
-        ballrb = ball.GetComponent<Rigidbody2D>();
-        playerSpeed = PlayerScript.globalSpeed;
+        if (SceneManager.GetActiveScene().name == "GameScene" && !SceneManagerScript.inOptions)
+        {
+            ball = GameObject.Find("Ball");
+            player1 = GameObject.Find("Player1");
+            player2 = GameObject.Find("Player2");
+            ballrb = ball.GetComponent<Rigidbody2D>();
+            playerSpeed = PlayerScript.globalSpeed;
+        }
     }
+
     private void Start()
     {
         Restart();

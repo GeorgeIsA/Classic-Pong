@@ -8,6 +8,8 @@ TagManager:
   - score
   - Ball
   - GameHandler
+  - GameEventSystem
+  - OptionsEventSystem
   layers:
   - Default
   - TransparentFX
