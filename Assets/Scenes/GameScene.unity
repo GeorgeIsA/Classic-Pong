@@ -856,7 +856,6 @@ Transform:
   - {fileID: 519420032}
   - {fileID: 496584375003112835}
   - {fileID: 603093574}
-  - {fileID: 6011513753772384616}
   - {fileID: 1297311239}
   - {fileID: 408887129}
   - {fileID: 1051219580}
@@ -1232,7 +1231,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1618606069}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 200757544509281163, guid: de75a769edd06004884682359384bafa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1278,20 +1277,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ball
       objectReference: {fileID: 0}
-    - target: {fileID: 5332422886816258194, guid: de75a769edd06004884682359384bafa, type: 3}
-      propertyPath: m_SortingOrder
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de75a769edd06004884682359384bafa, type: 3}
---- !u!4 &6011513753772384616 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 200757544509281163, guid: de75a769edd06004884682359384bafa, type: 3}
-  m_PrefabInstance: {fileID: 6011513753772384615}
-  m_PrefabAsset: {fileID: 0}
 --- !u!212 &8367591834189247025
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1712,3 +1702,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 1618606069}
   - {fileID: 88616572142021307}
+  - {fileID: 6011513753772384615}

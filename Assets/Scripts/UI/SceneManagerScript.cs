@@ -15,26 +15,22 @@ public class SceneManagerScript : MonoBehaviour
     public static GameObject player1;
     public static GameObject player2;
     public static bool inOptions = false;
+    public static GameObject ball;
 
     private void Start()
     {
         if (SceneManager.GetActiveScene().name == "GameScene" && !inOptions)
         {
+            ball = GameObject.Find("Ball");
             gameHandlerObjectInstance = GameObject.FindGameObjectsWithTag("GameHandler");
             InitializeGameHandlers();
             if (doneInstance && gameHandlerObjectInstance.Length == 2)
             {
                 FindCopy(gameHandler1, gameHandler2);
                 if (is1)
-                {
                     Destroy(gameHandlerObjectInstance[1]);
-                    DontDestroyOnLoad(gameHandlerObjectInstance[0]);
-                }
                 else if (is2)
-                {
                     Destroy(gameHandlerObjectInstance[0]);
-                    DontDestroyOnLoad(gameHandlerObjectInstance[1]);
-                }
             }
         }
     }
@@ -79,9 +75,7 @@ public class SceneManagerScript : MonoBehaviour
     {
         SetPaddle();
         if (inGame)
-        {
             ApplyPaddleSize();
-        }
     }
 
     private static void SetPaddle()
@@ -135,9 +129,8 @@ public class SceneManagerScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            
-            //Debug.Log("Here the game handler should be disabled");
             ToggleGameHandler(false);
+            ball.GetComponent<Renderer>().enabled = false;
             Time.timeScale = 0;
             yield return SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex - 1, LoadSceneMode.Additive);
             inOptions = true;
@@ -146,42 +139,31 @@ public class SceneManagerScript : MonoBehaviour
 
     private IEnumerator PushOneScene()
     {
-        //Debug.Log("waiting for escape");
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-
-            //Debug.Log("Esc pressed");
-            
             yield return SceneManager.UnloadSceneAsync("OptionsScene");
             inOptions = false;
             Time.timeScale = 1;
             ToggleGameHandler(true);
+            ball.GetComponent<Renderer>().enabled = true;
         }
-    }   
+    }
 
     private void UISystem()
     {
         if (SceneManager.GetActiveScene().name == "GameScene" && !inOptions)
-        {
             StartCoroutine(BackOneScene());
-        }
     }
 
     private void Update()
     {
-        //Debug.Log("inOptions: " + inOptions + " inGame: " + inGame);
-        //Debug.Log("inOptions: " + inOptions);
         UISystem();
     }
 
     private void LateUpdate()
     {
         if (inOptions && inGame)
-        {
-            
-            //Debug.Log("Ready");
             StartCoroutine(PushOneScene());
-        }
     }
 
     private static void ToggleGameHandler(bool state)
@@ -189,10 +171,7 @@ public class SceneManagerScript : MonoBehaviour
         foreach (var handler in gameHandlerObjectInstance)
         {
             if (handler != null)
-            {
-                //Debug.Log("This is where it gets killed");
                 handler.SetActive(state);
-            }
         }
     }
 }
