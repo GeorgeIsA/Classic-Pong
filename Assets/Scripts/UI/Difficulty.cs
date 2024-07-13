@@ -1,6 +1,5 @@
 using UnityEngine;
-using UnityEngine.UIElements;
-//using UnityEngine.UI;
+using UnityEngine.UI;
 
 public class Difficulty : MonoBehaviour
 {
@@ -13,11 +12,13 @@ public class Difficulty : MonoBehaviour
         difficultyButton = GameObject.Find("DifficultyDropdown");
         paddleSlider = GameObject.Find("PaddleSizeSlider").GetComponent<Slider>();
         difficultyButton.gameObject.GetComponent<UnityEngine.UI.Dropdown>().value = difficultyNumber;
+        
     }
     public static void SetDifficultyButton()
     {
-        PlayerPrefs.SetInt("Difficulty", difficultyButton.gameObject.GetComponent<UnityEngine.UI.Dropdown>().value);
-        
+        difficultyNumber = difficultyButton.gameObject.GetComponent<UnityEngine.UI.Dropdown>().value;
+        PlayerPrefs.SetInt("Difficulty", difficultyNumber);
+        Debug.Log(difficultyNumber);
         paddleSlider.value = AdjustSize();
     }
     private static int AdjustSize()
@@ -25,11 +26,11 @@ public class Difficulty : MonoBehaviour
         switch (difficultyNumber)
         {
             case 0:
-                return 1;
+                return 3;
             case 1:
                 return 2;
             case 2:
-                return 3;
+                return 1;
             default: return 0;
         }
     }

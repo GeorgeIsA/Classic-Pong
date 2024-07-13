@@ -33,6 +33,7 @@ public class PlayerScript : MonoBehaviour
             player1Movement();
         else if (player2)
             player2Movement();
+        Debug.Log(globalSpeed);
 
     }
 
