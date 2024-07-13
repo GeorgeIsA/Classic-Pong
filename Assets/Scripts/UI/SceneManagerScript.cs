@@ -21,18 +21,28 @@ public class SceneManagerScript : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "GameScene" && !inOptions)
         {
-            ball = GameObject.Find("Ball");
-            gameHandlerObjectInstance = GameObject.FindGameObjectsWithTag("GameHandler");
-            InitializeGameHandlers();
-            if (doneInstance && gameHandlerObjectInstance.Length == 2)
-            {
-                FindCopy(gameHandler1, gameHandler2);
-                if (is1)
-                    Destroy(gameHandlerObjectInstance[1]);
-                else if (is2)
-                    Destroy(gameHandlerObjectInstance[0]);
-            }
+            SetupGameScene();
         }
+    }
+
+    private void SetupGameScene()
+    {
+        ball = GameObject.Find("Ball");
+        gameHandlerObjectInstance = GameObject.FindGameObjectsWithTag("GameHandler");
+        InitializeGameHandlers();
+        if (doneInstance && gameHandlerObjectInstance.Length == 2)
+        {
+            FindCopy(gameHandler1, gameHandler2);
+            DestroyUnnecessaryGameHandler();
+        }
+    }
+
+    private void DestroyUnnecessaryGameHandler()
+    {
+        if (is1)
+            Destroy(gameHandlerObjectInstance[1]);
+        else if (is2)
+            Destroy(gameHandlerObjectInstance[0]);
     }
 
     private void InitializeGameHandlers()
@@ -40,18 +50,23 @@ public class SceneManagerScript : MonoBehaviour
         gameHandler1 = gameHandlerObjectInstance[0].GetComponent<GameHandler>();
         if (gameHandlerObjectInstance.Length == 1 && gameHandlerObjectInstance[0] != null)
         {
-            if (!gameHandler1.firstInstance && !doneInstance)
-            {
-                gameHandler1.firstInstance = true;
-                doneInstance = true;
-                is1 = true;
-                is2 = false;
-                DontDestroyOnLoad(gameHandlerObjectInstance[0]);
-            }
+            SetupFirstInstance();
         }
         else if (gameHandlerObjectInstance.Length == 2 && gameHandlerObjectInstance[1] != null)
         {
             gameHandler2 = gameHandlerObjectInstance[1].GetComponent<GameHandler>();
+        }
+    }
+
+    private void SetupFirstInstance()
+    {
+        if (!gameHandler1.firstInstance && !doneInstance)
+        {
+            gameHandler1.firstInstance = true;
+            doneInstance = true;
+            is1 = true;
+            is2 = false;
+            DontDestroyOnLoad(gameHandlerObjectInstance[0]);
         }
     }
 
@@ -73,25 +88,35 @@ public class SceneManagerScript : MonoBehaviour
 
     private void Awake()
     {
-
         if (inOptions)
         {
-            paddleSlider = GameObject.Find("PaddleSizeSlider").GetComponent<Slider>();
-            paddleSlider.value = PlayerPrefs.GetFloat("PaddleSize", 2.5f);
+            SetupOptionsScene();
         }
         if (inGame && !inOptions)
         {
-            player1 = GameObject.Find("Player1");
-            player2 = GameObject.Find("Player2");
-            ApplyPaddleSize();
+            SetupGamePlayers();
         }
+    }
+
+    private void SetupOptionsScene()
+    {
+        paddleSlider = GameObject.Find("PaddleSizeSlider").GetComponent<Slider>();
+        paddleSlider.value = PlayerPrefs.GetFloat("PaddleSize", 2.5f);
+    }
+
+    private void SetupGamePlayers()
+    {
+        player1 = GameObject.Find("Player1");
+        player2 = GameObject.Find("Player2");
+        ApplyPaddleSize();
     }
 
     private static void ApplyPaddleSize()
     {
-        player1.transform.localScale = new Vector2(0.5f, PlayerPrefs.GetFloat("PaddleSize", 2.5f));
-        player2.transform.localScale = new Vector2(0.5f, PlayerPrefs.GetFloat("PaddleSize", 2.5f));
-
+        float paddleSize = PlayerPrefs.GetFloat("PaddleSize", 2.5f);
+        Vector2 scale = new Vector2(0.5f, paddleSize);
+        player1.transform.localScale = scale;
+        player2.transform.localScale = scale;
     }
 
     public static void PlayPush()
@@ -104,7 +129,6 @@ public class SceneManagerScript : MonoBehaviour
     {
         SceneManager.LoadScene("OptionsScene");
         inOptions = true;
-
     }
 
     public static void ExitPush()
@@ -120,7 +144,6 @@ public class SceneManagerScript : MonoBehaviour
         PlayerPrefs.SetFloat("PaddleSize", paddleSlider.value);
         SceneManager.LoadScene("MenuScene");
         Destroy(gameHandlerObjectInstance[0]);
-
     }
 
     private IEnumerator BackOneScene()
@@ -133,8 +156,7 @@ public class SceneManagerScript : MonoBehaviour
             yield return SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex - 1, LoadSceneMode.Additive);
             inOptions = true;
 
-            paddleSlider = GameObject.Find("PaddleSizeSlider").GetComponent<Slider>();
-            paddleSlider.value = PlayerPrefs.GetFloat("PaddleSize", 2.5f);
+            SetupOptionsScene();
         }
     }
 

@@ -12,6 +12,7 @@ public class InstantiateSceneManager : MonoBehaviour
         {
             Instantiate(SceneManagerPref, new Vector2(0, 0), Quaternion.identity);
             SceneManagerScript.inOptions = true;
+
         }
         }
     }
