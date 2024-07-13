@@ -16,6 +16,7 @@ public class SceneManagerScript : MonoBehaviour
     public static GameObject player1;
     public static GameObject player2;
     public static GameObject ball;
+    public GameObject eventSystemGame;
 
     private void Start()
     {
@@ -150,10 +151,12 @@ public class SceneManagerScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            ToggleGameHandler(false);
+            
             ball.GetComponent<Renderer>().enabled = false;
             Time.timeScale = 0;
+            eventSystemGame.SetActive(false);
             yield return SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex - 1, LoadSceneMode.Additive);
+            ToggleGameHandler(false);
             inOptions = true;
 
             SetupOptionsScene();
