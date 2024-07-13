@@ -2062,7 +2062,19 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1925930289}
+        m_TargetAssemblyTypeName: Difficulty, Assembly-CSharp
+        m_MethodName: SetDifficultyButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &1822072929
 MonoBehaviour:
@@ -2183,6 +2195,7 @@ GameObject:
   - component: {fileID: 1925930285}
   - component: {fileID: 1925930284}
   - component: {fileID: 1925930288}
+  - component: {fileID: 1925930289}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2292,6 +2305,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SceneManagerPref: {fileID: 7465450491378673777, guid: 2dc7bcadcbe923241a4a63f174b43867, type: 3}
+--- !u!114 &1925930289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925930283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b7ec68ae0844ca4697065751ec8c9a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1933905192
 GameObject:
   m_ObjectHideFlags: 0

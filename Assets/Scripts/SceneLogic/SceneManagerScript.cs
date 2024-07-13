@@ -101,7 +101,7 @@ public class SceneManagerScript : MonoBehaviour
     private void SetupOptionsScene()
     {
         paddleSlider = GameObject.Find("PaddleSizeSlider").GetComponent<Slider>();
-        paddleSlider.value = PlayerPrefs.GetFloat("PaddleSize", 2.5f);
+        paddleSlider.value = PlayerPrefs.GetFloat("PaddleSize", 1);
     }
 
     private void SetupGamePlayers()
@@ -113,7 +113,7 @@ public class SceneManagerScript : MonoBehaviour
 
     private static void ApplyPaddleSize()
     {
-        float paddleSize = PlayerPrefs.GetFloat("PaddleSize", 2.5f);
+        float paddleSize = PlayerPrefs.GetFloat("PaddleSize", 1);
         Vector2 scale = new Vector2(0.5f, paddleSize);
         player1.transform.localScale = scale;
         player2.transform.localScale = scale;
