@@ -20,12 +20,8 @@ public class GameHandler : MonoBehaviour
             player2 = GameObject.Find("Player2");
             ballrb = ball.GetComponent<Rigidbody2D>();
             playerSpeed = PlayerScript.globalSpeed;
+            Restart();
         }
-    }
-
-    private void Start()
-    {
-        Restart();
     }
     public void Restart()
     {

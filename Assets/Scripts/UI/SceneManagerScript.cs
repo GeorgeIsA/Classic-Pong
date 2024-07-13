@@ -4,17 +4,17 @@ using UnityEngine.UI;
 using System.Collections;
 public class SceneManagerScript : MonoBehaviour
 {
-    private static bool inGame;
     private static Slider paddleSlider;
     public static GameObject[] gameHandlerObjectInstance = new GameObject[2];
     public GameHandler gameHandler1;
     public GameHandler gameHandler2;
     public static bool doneInstance = false;
+    public static bool inGame = false;
+    public static bool inOptions = false;
     public static bool is1;
     public static bool is2;
     public static GameObject player1;
     public static GameObject player2;
-    public static bool inOptions = false;
     public static GameObject ball;
 
     private void Start()
@@ -73,45 +73,38 @@ public class SceneManagerScript : MonoBehaviour
 
     private void Awake()
     {
-        SetPaddle();
-        if (inGame)
-            ApplyPaddleSize();
-    }
 
-    private static void SetPaddle()
-    {
         if (inOptions)
         {
+            Debug.Log("true");
             paddleSlider = GameObject.Find("PaddleSizeSlider").GetComponent<Slider>();
             paddleSlider.value = PlayerPrefs.GetFloat("PaddleSize", 2.5f);
         }
-    }
-
-    public static void SetPaddleSize()
-    {
-        PlayerPrefs.SetFloat("PaddleSize", paddleSlider.value);
+        if (inGame && !inOptions)
+            ApplyPaddleSize();
     }
 
     private static void ApplyPaddleSize()
     {
-        if (SceneManager.GetActiveScene().name == "GameScene" && !inOptions)
-        {
-            player1 = GameObject.Find("Player1");
-            player2 = GameObject.Find("Player2");
-            player1.transform.localScale = new Vector3(0.5f, PlayerPrefs.GetFloat("PaddleSize", 2.5f), 1);
-            player2.transform.localScale = new Vector3(0.5f, PlayerPrefs.GetFloat("PaddleSize", 2.5f), 1);
-        }
+
+        player1 = GameObject.Find("Player1");
+        player2 = GameObject.Find("Player2");
+        player1.transform.localScale = new Vector2(0.5f, PlayerPrefs.GetFloat("PaddleSize", 2.5f));
+        player2.transform.localScale = new Vector2(0.5f, PlayerPrefs.GetFloat("PaddleSize", 2.5f));
+
     }
 
     public static void PlayPush()
     {
-        inGame = true;
         SceneManager.LoadScene("GameScene");
+        inGame = true;
     }
 
     public static void OptionsPush()
     {
         SceneManager.LoadScene("OptionsScene");
+        inOptions = true;
+
     }
 
     public static void ExitPush()
@@ -121,8 +114,13 @@ public class SceneManagerScript : MonoBehaviour
 
     public static void BackPush()
     {
-        SceneManager.LoadScene("MenuScene");
+        inOptions = false;
         inGame = false;
+        Time.timeScale = 1;
+        SceneManager.LoadScene("MenuScene");
+        PlayerPrefs.SetFloat("PaddleSize", paddleSlider.value);
+        Destroy(gameHandlerObjectInstance[0]);
+
     }
 
     private IEnumerator BackOneScene()
@@ -141,6 +139,7 @@ public class SceneManagerScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            PlayerPrefs.SetFloat("PaddleSize", paddleSlider.value);
             yield return SceneManager.UnloadSceneAsync("OptionsScene");
             inOptions = false;
             Time.timeScale = 1;
@@ -151,13 +150,20 @@ public class SceneManagerScript : MonoBehaviour
 
     private void UISystem()
     {
-        if (SceneManager.GetActiveScene().name == "GameScene" && !inOptions)
+        if (inOptions && !inGame && Input.GetKeyDown(KeyCode.Escape))
+        {
+            inOptions = false;
+            SceneManager.LoadScene("MenuScene");
+        }
+        if (inGame && !inOptions)
             StartCoroutine(BackOneScene());
     }
 
     private void Update()
     {
+        Debug.Log(inOptions + " " + inGame);
         UISystem();
+        //Debug.Log("In Game: " + inGame + " In Options: " + inOptions);
     }
 
     private void LateUpdate()
