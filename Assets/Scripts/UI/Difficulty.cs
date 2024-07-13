@@ -18,7 +18,7 @@ public class Difficulty : MonoBehaviour
     {
         difficultyNumber = difficultyButton.gameObject.GetComponent<UnityEngine.UI.Dropdown>().value;
         PlayerPrefs.SetInt("Difficulty", difficultyNumber);
-        Debug.Log(difficultyNumber);
+        //Debug.Log(difficultyNumber);
         paddleSlider.value = AdjustSize();
     }
     private static int AdjustSize()

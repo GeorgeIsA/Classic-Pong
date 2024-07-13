@@ -9,7 +9,6 @@ public class GameHandler : MonoBehaviour
     [SerializeField] public bool onRandom;
 
     float playerSpeed;
-
     Rigidbody2D ballrb;
     private void Awake()
     {
