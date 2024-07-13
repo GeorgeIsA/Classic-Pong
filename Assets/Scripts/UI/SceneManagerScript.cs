@@ -76,19 +76,19 @@ public class SceneManagerScript : MonoBehaviour
 
         if (inOptions)
         {
-            Debug.Log("true");
             paddleSlider = GameObject.Find("PaddleSizeSlider").GetComponent<Slider>();
             paddleSlider.value = PlayerPrefs.GetFloat("PaddleSize", 2.5f);
         }
         if (inGame && !inOptions)
+        {
+            player1 = GameObject.Find("Player1");
+            player2 = GameObject.Find("Player2");
             ApplyPaddleSize();
+        }
     }
 
     private static void ApplyPaddleSize()
     {
-
-        player1 = GameObject.Find("Player1");
-        player2 = GameObject.Find("Player2");
         player1.transform.localScale = new Vector2(0.5f, PlayerPrefs.GetFloat("PaddleSize", 2.5f));
         player2.transform.localScale = new Vector2(0.5f, PlayerPrefs.GetFloat("PaddleSize", 2.5f));
 
@@ -132,6 +132,9 @@ public class SceneManagerScript : MonoBehaviour
             Time.timeScale = 0;
             yield return SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex - 1, LoadSceneMode.Additive);
             inOptions = true;
+
+            paddleSlider = GameObject.Find("PaddleSizeSlider").GetComponent<Slider>();
+            paddleSlider.value = PlayerPrefs.GetFloat("PaddleSize", 2.5f);
         }
     }
 
@@ -142,6 +145,7 @@ public class SceneManagerScript : MonoBehaviour
             PlayerPrefs.SetFloat("PaddleSize", paddleSlider.value);
             yield return SceneManager.UnloadSceneAsync("OptionsScene");
             inOptions = false;
+            ApplyPaddleSize();
             Time.timeScale = 1;
             ToggleGameHandler(true);
             ball.GetComponent<Renderer>().enabled = true;
@@ -161,15 +165,15 @@ public class SceneManagerScript : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(inOptions + " " + inGame);
         UISystem();
-        //Debug.Log("In Game: " + inGame + " In Options: " + inOptions);
     }
 
     private void LateUpdate()
     {
         if (inOptions && inGame)
+        {
             StartCoroutine(PushOneScene());
+        }
     }
 
     private static void ToggleGameHandler(bool state)
