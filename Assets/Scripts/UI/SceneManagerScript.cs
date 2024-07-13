@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using System.Collections;
 public class SceneManagerScript : MonoBehaviour
 {
-    private static Slider paddleSlider;
+    public static Slider paddleSlider;
     public static GameObject[] gameHandlerObjectInstance = new GameObject[2];
     public GameHandler gameHandler1;
     public GameHandler gameHandler2;
@@ -117,8 +117,8 @@ public class SceneManagerScript : MonoBehaviour
         inOptions = false;
         inGame = false;
         Time.timeScale = 1;
-        SceneManager.LoadScene("MenuScene");
         PlayerPrefs.SetFloat("PaddleSize", paddleSlider.value);
+        SceneManager.LoadScene("MenuScene");
         Destroy(gameHandlerObjectInstance[0]);
 
     }
@@ -157,6 +157,7 @@ public class SceneManagerScript : MonoBehaviour
         if (inOptions && !inGame && Input.GetKeyDown(KeyCode.Escape))
         {
             inOptions = false;
+            PlayerPrefs.SetFloat("PaddleSize", paddleSlider.value);
             SceneManager.LoadScene("MenuScene");
         }
         if (inGame && !inOptions)
