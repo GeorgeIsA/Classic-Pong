@@ -12,4 +12,9 @@ public class Score2 : MonoBehaviour
             Scoring.scored = true;
         }
     }
+    private void Update()
+    {
+        if (Scoring.player1Score == 0)
+            player1ScoreText.text = "0";
+    }
 }

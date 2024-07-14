@@ -12,5 +12,11 @@ public class Score1 : MonoBehaviour
             Scoring.scored = true;
         }
     }
-
+    private void Update()
+    {
+        if (Scoring.player2Score == 0)
+            player2ScoreText.text = "0";
+    }
 }
+
+
