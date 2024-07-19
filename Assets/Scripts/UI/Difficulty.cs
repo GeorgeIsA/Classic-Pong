@@ -12,6 +12,7 @@ public class Difficulty : MonoBehaviour
         difficultyButton = GameObject.Find("DifficultyDropdown");
         paddleSlider = GameObject.Find("PaddleSizeSlider").GetComponent<Slider>();
         difficultyButton.gameObject.GetComponent<UnityEngine.UI.Dropdown>().value = difficultyNumber;
+        paddleSlider.value = PlayerPrefs.GetFloat("PaddleSize", 1);
         
     }
     public static void SetDifficultyButton()
